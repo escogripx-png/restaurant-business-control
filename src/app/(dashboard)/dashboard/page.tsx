@@ -1,6 +1,5 @@
 import { requireUser } from "@/server/auth/session";
-import { getAccessibleRestaurantIds } from "@/server/auth/permissions";
-import { listRestaurantsByIds } from "@/server/repositories/restaurant.repository";
+import { getAccessibleRestaurants } from "@/server/restaurants/accessible-restaurants";
 import { getSelectedRestaurantId } from "@/server/restaurants/selected-restaurant";
 import { ALL_RESTAURANTS } from "@/server/restaurants/constants";
 import { getDemoMetricsForRestaurant, sumDemoMetrics } from "@/server/demo/mock-metrics";
@@ -11,9 +10,8 @@ import Link from "next/link";
 
 export default async function DashboardPage() {
   const user = await requireUser();
-  const restaurantIds = await getAccessibleRestaurantIds(user);
   const [restaurants, selectedRestaurantId] = await Promise.all([
-    listRestaurantsByIds(user.organizationId, restaurantIds),
+    getAccessibleRestaurants(user),
     getSelectedRestaurantId(),
   ]);
 

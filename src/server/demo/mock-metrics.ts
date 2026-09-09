@@ -6,6 +6,8 @@
  * Delete this module once real Order data flows through AnalyticsSnapshot.
  */
 
+import { seededRandom } from "@/server/demo/seeded-random";
+
 export type RestaurantDemoMetrics = {
   restaurantId: string;
   closedRevenueMinor: number;
@@ -13,14 +15,6 @@ export type RestaurantDemoMetrics = {
   orderCount: number;
   changeVsPreviousPct: number;
 };
-
-function seededRandom(seed: string): number {
-  let hash = 0;
-  for (let i = 0; i < seed.length; i++) {
-    hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
-  }
-  return hash / 0xffffffff;
-}
 
 export function getDemoMetricsForRestaurant(restaurantId: string): RestaurantDemoMetrics {
   const r = seededRandom(restaurantId);

@@ -1,9 +1,13 @@
 import { requireUser } from "@/server/auth/session";
 import { getOrganizationWithRestaurants } from "@/server/repositories/organization.repository";
+import { isDemoMode } from "@/server/demo/demo-mode";
+import { DEMO_ORGANIZATION, DEMO_RESTAURANTS } from "@/server/demo/demo-data";
 
 export default async function SettingsPage() {
   const user = await requireUser();
-  const organization = await getOrganizationWithRestaurants(user.organizationId);
+  const organization = isDemoMode()
+    ? { name: DEMO_ORGANIZATION.name, restaurants: DEMO_RESTAURANTS }
+    : await getOrganizationWithRestaurants(user.organizationId);
 
   return (
     <div className="flex flex-col gap-6">

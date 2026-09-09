@@ -16,7 +16,7 @@ export function NavLink({ item, className }: { item: NavItem; className?: string
       data-active={isActive}
     >
       {item.icon && <span aria-hidden>{item.icon}</span>}
-      <span>{item.label}</span>
+      <span className="max-w-full truncate">{item.label}</span>
     </Link>
   );
 }

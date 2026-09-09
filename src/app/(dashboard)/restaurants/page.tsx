@@ -1,11 +1,9 @@
 import { requireUser } from "@/server/auth/session";
-import { getAccessibleRestaurantIds } from "@/server/auth/permissions";
-import { listRestaurantsByIds } from "@/server/repositories/restaurant.repository";
+import { getAccessibleRestaurants } from "@/server/restaurants/accessible-restaurants";
 
 export default async function RestaurantsPage() {
   const user = await requireUser();
-  const restaurantIds = await getAccessibleRestaurantIds(user);
-  const restaurants = await listRestaurantsByIds(user.organizationId, restaurantIds);
+  const restaurants = await getAccessibleRestaurants(user);
 
   return (
     <div className="flex flex-col gap-4">
