@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Phase 1 scope: Organization, Restaurant, User, RestaurantAccess, AuditLog.
+// Order/Expense/Alert/etc. entities are added in later phases once the
+// iiko data contract is confirmed (see Phase 3) and finance/analytics work
+// begins (Phase 5+). Keeping the schema narrow now avoids modeling fields
+// we can't yet validate against real data.
+// ---------------------------------------------------------------------------
+
+enum UserRole {
+  OWNER
+  MANAGER
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  restaurants Restaurant[]
+  users       User[]
+  auditLogs   AuditLog[]
+}
+
+model Restaurant {
+  id             String   @id @default(cuid())
+  organizationId String
+  name           String
+  timezone       String // IANA timezone, e.g. "Europe/Prague"
+  currency       String // ISO 4217, e.g. "CZK"
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  access       RestaurantAccess[]
+
+  @@index([organizationId])
+}
+
+model User {
+  id             String   @id @default(cuid())
+  organizationId String
+  email          String   @unique
+  passwordHash   String
+  name           String?
+  role           UserRole @default(MANAGER)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization     Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  restaurantAccess RestaurantAccess[]
+  auditLogs        AuditLog[]
+
+  @@index([organizationId])
+}
+
+// Explicit grant of a MANAGER to a specific restaurant. OWNER bypasses this
+// table entirely (owners see every restaurant in their organization) —
+// enforced in the permission layer, not by seeding rows for owners.
+model RestaurantAccess {
+  id           String   @id @default(cuid())
+  userId       String
+  restaurantId String
+  createdAt    DateTime @default(now())
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, restaurantId])
+  @@index([restaurantId])
+}
+
+model AuditLog {
+  id             String   @id @default(cuid())
+  organizationId String
+  actorId        String?
+  action         String
+  entity         String
+  entityId       String
+  metadata       Json?
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  actor        User?        @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([organizationId, createdAt])
+  @@index([entity, entityId])
+}
