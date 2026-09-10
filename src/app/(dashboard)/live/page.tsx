@@ -2,6 +2,7 @@ import { requireUser } from "@/server/auth/session";
 import { resolveRestaurantScope } from "@/server/restaurants/accessible-restaurants";
 import { getDemoMetricsForRestaurant, sumDemoMetrics } from "@/server/demo/mock-metrics";
 import { getDemoOrders } from "@/server/demo/mock-operations";
+import { getDemoTableStatus } from "@/server/demo/mock-tables";
 import { formatMoney } from "@/lib/money";
 import { KpiCard } from "@/components/dashboard/KpiCard";
 import { DemoDataBanner } from "@/components/dashboard/DemoDataBanner";
@@ -18,6 +19,15 @@ export default async function LivePage() {
       .filter((o) => o.status === "OPEN")
       .map((o) => ({ ...o, restaurantName: r.name, currency: r.currency })),
   );
+
+  const tableStatuses = scopedRestaurants.map((r) => getDemoTableStatus(r.id));
+  const totalTables = tableStatuses.reduce((s, t) => s + t.totalTables, 0);
+  const occupiedTables = tableStatuses.reduce((s, t) => s + t.occupiedTables, 0);
+  const occupancyPct = totalTables > 0 ? Math.round((occupiedTables / totalTables) * 100) : 0;
+  const avgTableTimeMinutes =
+    tableStatuses.length > 0
+      ? Math.round(tableStatuses.reduce((s, t) => s + t.avgTableTimeMinutes, 0) / tableStatuses.length)
+      : 0;
 
   return (
     <div className="flex flex-col gap-6">
@@ -37,6 +47,11 @@ export default async function LivePage() {
           label="Итого сейчас"
           value={formatMoney(totals.closedRevenueMinor + totals.openOrdersMinor, currency)}
         />
+        <KpiCard
+          label="Занятость столов"
+          value={`${occupiedTables} из ${totalTables} (${occupancyPct}%)`}
+        />
+        <KpiCard label="Среднее время за столом" value={`${avgTableTimeMinutes} мин`} />
       </div>
 
       <div className="rounded-2xl border border-black/5 bg-white">

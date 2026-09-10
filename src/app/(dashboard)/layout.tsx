@@ -6,6 +6,7 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { RestaurantSwitcher } from "@/components/layout/RestaurantSwitcher";
 import { SignOutButton } from "@/components/layout/SignOutButton";
+import { DemoRoleSwitcher } from "@/components/layout/DemoRoleSwitcher";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const user = await requireUser();
@@ -27,9 +28,12 @@ export default async function DashboardLayout({ children }: { children: React.Re
           <RestaurantSwitcher restaurants={restaurants} selectedId={selectedRestaurantId} />
           <div className="flex items-center gap-3">
             {demo && (
-              <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-medium text-amber-800">
-                Демо-режим
-              </span>
+              <>
+                <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-medium text-amber-800">
+                  Демо-режим
+                </span>
+                <DemoRoleSwitcher role={user.role} />
+              </>
             )}
             <span className="hidden text-sm text-foreground/60 sm:inline">
               {user.email} · {user.role === "OWNER" ? "Владелец" : "Менеджер"}

@@ -3,10 +3,16 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/server/auth/config";
 import { isDemoMode } from "@/server/demo/demo-mode";
 import { DEMO_USER } from "@/server/demo/demo-data";
+import { getDemoRole } from "@/server/demo/demo-role";
+
+async function getDemoUser() {
+  const role = await getDemoRole();
+  return { ...DEMO_USER, role };
+}
 
 export async function getCurrentSession() {
   if (isDemoMode()) {
-    return { user: DEMO_USER } as const;
+    return { user: await getDemoUser() } as const;
   }
   return getServerSession(authOptions);
 }
@@ -17,7 +23,7 @@ export async function getCurrentSession() {
  */
 export async function requireUser() {
   if (isDemoMode()) {
-    return DEMO_USER;
+    return getDemoUser();
   }
 
   const session = await getCurrentSession();

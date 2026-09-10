@@ -13,7 +13,10 @@ import { ALL_RESTAURANTS } from "@/server/restaurants/constants";
  */
 export async function getAccessibleRestaurants(user: AuthenticatedUser) {
   if (isDemoMode()) {
-    return DEMO_RESTAURANTS;
+    // Mirrors prisma/seed.ts: the demo MANAGER only has access to the first
+    // restaurant, so switching the demo role actually demonstrates
+    // restaurant-level scoping, not just the Warehouse feature-level gate.
+    return user.role === "OWNER" ? DEMO_RESTAURANTS : DEMO_RESTAURANTS.slice(0, 1);
   }
 
   const restaurantIds = await getAccessibleRestaurantIds(user);

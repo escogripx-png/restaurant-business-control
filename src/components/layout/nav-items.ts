@@ -12,6 +12,8 @@ export const PRIMARY_NAV_ITEMS: NavItem[] = [
   { href: "/employees", label: "Сотрудники", icon: "◔" },
   { href: "/finance", label: "Финансы", icon: "$" },
   { href: "/analytics", label: "Аналитика", icon: "▲" },
+  { href: "/menu", label: "Меню", icon: "◫" },
+  { href: "/warehouse", label: "Склад", icon: "▧" },
   { href: "/operations", label: "Операции", icon: "◆" },
   { href: "/alerts", label: "Уведомления", icon: "!" },
   { href: "/reports", label: "Отчёты", icon: "▥" },
