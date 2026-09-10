@@ -18,7 +18,11 @@ export default async function DashboardLayout({ children }: { children: React.Re
   return (
     <div className="flex min-h-screen flex-1">
       <Sidebar />
-      <div className="flex flex-1 flex-col">
+      {/* min-w-0: without it, this flex item refuses to shrink below its
+          widest descendant's min-content width (e.g. a table), forcing the
+          whole page wider than the viewport on mobile instead of letting
+          that descendant scroll internally. */}
+      <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex items-center justify-between border-b border-black/5 bg-white px-4 py-3 md:px-6">
           <RestaurantSwitcher restaurants={restaurants} selectedId={selectedRestaurantId} />
           <div className="flex items-center gap-3">

@@ -16,7 +16,11 @@ export function NavLink({ item, className }: { item: NavItem; className?: string
       data-active={isActive}
     >
       {item.icon && <span aria-hidden>{item.icon}</span>}
-      <span className="max-w-full truncate">{item.label}</span>
+      {/* w-full (not just max-w-full) so this actually has a bounded box to
+          truncate against — the parent Link is a column flexbox with
+          items-center, which sizes children to their natural width instead
+          of stretching them, so max-width alone never had anything to cap. */}
+      <span className="w-full truncate text-center">{item.label}</span>
     </Link>
   );
 }

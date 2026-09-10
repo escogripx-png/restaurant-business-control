@@ -32,25 +32,25 @@ export default async function PnlPage() {
 
       <div className="rounded-2xl border border-black/5 bg-white p-4">
         <dl className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
-          <div>
+          <div className="min-w-0">
             <dt className="text-foreground/50">Выручка</dt>
             <dd className="text-lg font-semibold tabular-nums text-foreground">
               {formatMoney(revenueMinor, currency)}
             </dd>
           </div>
-          <div>
+          <div className="min-w-0">
             <dt className="text-foreground/50">Расходы</dt>
             <dd className="text-lg font-semibold tabular-nums text-foreground">
               {formatMoney(expensesMinor, currency)}
             </dd>
           </div>
-          <div>
+          <div className="min-w-0">
             <dt className="text-foreground/50">Прибыль (оценка)</dt>
             <dd className="text-lg font-semibold tabular-nums text-foreground">
               {formatMoney(operatingResultMinor, currency)}
             </dd>
           </div>
-          <div>
+          <div className="min-w-0">
             <dt className="text-foreground/50">Маржа</dt>
             <dd className="text-lg font-semibold tabular-nums text-foreground">
               {Math.round((operatingResultMinor / revenueMinor) * 1000) / 10}%

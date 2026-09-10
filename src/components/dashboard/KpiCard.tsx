@@ -11,7 +11,7 @@ export function KpiCard({
     change === undefined ? "" : change >= 0 ? "text-emerald-600" : "text-red-600";
 
   return (
-    <div className="rounded-2xl border border-black/5 bg-white p-4">
+    <div className="min-w-0 rounded-2xl border border-black/5 bg-white p-4">
       <div className="text-xs font-medium uppercase tracking-wide text-foreground/50">
         {label}
       </div>
