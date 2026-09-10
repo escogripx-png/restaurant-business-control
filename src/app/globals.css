@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  /* Dark-first by design, not a prefers-color-scheme fallback — this is the
-     product's one committed look (Netflix/Stark-HUD-inspired), not a theme
-     toggle. */
+  /* Dark is the default look (matches the approved direction), light is an
+     explicit opt-in via [data-theme="light"] on <html> — see
+     src/server/theme/theme.ts and ThemeToggle. Not tied to OS preference:
+     the user picks and it's remembered. */
   --background: #07080a;
   --surface: #111318;
   --surface-secondary: #1b1e24;
@@ -26,6 +27,29 @@
   --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.16);
   --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.04) inset, 0 10px 30px rgba(0, 0, 0, 0.45);
+  --glow-opacity: 1;
+}
+
+:root[data-theme="light"] {
+  --background: #f7f6f3;
+  --surface: #ffffff;
+  --surface-secondary: #eeece7;
+  --foreground: #1c1c1e;
+  --foreground-muted: #55585c;
+  --foreground-subtle: #77797d;
+  --accent: #0f7d94;
+  --accent-soft: rgba(15, 125, 148, 0.1);
+  --accent-glow: 0 0 0 1px rgba(15, 125, 148, 0.35), 0 0 16px rgba(15, 125, 148, 0.12);
+  --success: #1f8a51;
+  --success-soft: rgba(31, 138, 81, 0.1);
+  --warning: #a15f16;
+  --warning-soft: rgba(161, 95, 22, 0.1);
+  --danger: #b3261e;
+  --danger-soft: rgba(179, 38, 30, 0.1);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+  --glow-opacity: 0.35;
 }
 
 @theme inline {
@@ -59,6 +83,10 @@ html {
   overflow-x: hidden;
 }
 
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -71,13 +99,15 @@ body {
 }
 
 /* Subtle ambient glow behind the app shell — the one indulgent touch, kept
-   fixed so it doesn't scroll or repaint per-page. */
+   fixed so it doesn't scroll or repaint per-page. Dimmed on light (a bright
+   cyan glow reads as a smudge on white, not an accent). */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
+  opacity: var(--glow-opacity);
   background:
     radial-gradient(1200px 600px at 15% -10%, rgba(34, 211, 238, 0.05), transparent 60%),
     radial-gradient(900px 500px at 100% 0%, rgba(224, 164, 88, 0.03), transparent 55%);

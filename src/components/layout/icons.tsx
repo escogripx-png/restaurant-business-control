@@ -158,6 +158,23 @@ function SettingsIcon() {
   );
 }
 
+export function SunIcon() {
+  return (
+    <svg {...commonProps} width={17} height={17}>
+      <circle cx="10" cy="10" r="3.4" />
+      <path d="M10 2.8v1.8M10 15.4v1.8M17.2 10h-1.8M4.6 10H2.8M15.1 4.9l-1.3 1.3M6.2 13.8l-1.3 1.3M15.1 15.1l-1.3-1.3M6.2 6.2 4.9 4.9" />
+    </svg>
+  );
+}
+
+export function MoonIcon() {
+  return (
+    <svg {...commonProps} width={17} height={17}>
+      <path d="M16 12.5A6.8 6.8 0 0 1 7.5 4a6.8 6.8 0 1 0 8.5 8.5Z" />
+    </svg>
+  );
+}
+
 const ICONS: Record<IconName, () => React.JSX.Element> = {
   dashboard: DashboardIcon,
   live: LiveIcon,
