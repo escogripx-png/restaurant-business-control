@@ -15,7 +15,7 @@ export default async function WarehousePage() {
     return (
       <div className="flex flex-col gap-4">
         <h1 className="text-lg font-semibold text-foreground">Склад</h1>
-        <div className="rounded-2xl border border-black/5 bg-white p-6 text-sm text-foreground/60">
+        <div className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)] p-6 text-sm text-foreground-muted">
           Этот раздел доступен только владельцу аккаунта.
         </div>
       </div>
@@ -39,20 +39,20 @@ export default async function WarehousePage() {
     <div className="flex flex-col gap-6">
       <h1 className="text-lg font-semibold text-foreground">Склад</h1>
       <DemoDataBanner />
-      <p className="-mt-4 text-xs text-foreground/40">
+      <p className="-mt-4 text-xs text-foreground-subtle">
         Остатки ведутся в приложении: при каждом заказе ингредиенты по тех.карте блюда списываются
         автоматически (заказы приходят из iiko, тех.карты и остатки — наши).
       </p>
 
       {stockByRestaurant.map(({ restaurant, items }) => (
-        <div key={restaurant.id} className="rounded-2xl border border-black/5 bg-white">
-          <div className="border-b border-black/5 px-4 py-3 text-sm font-medium text-foreground">
+        <div key={restaurant.id} className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
+          <div className="border-b border-[var(--border)] px-4 py-3 text-sm font-medium text-foreground">
             {isAll ? restaurant.name : "Остатки"}
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-xs uppercase tracking-wide text-foreground/40">
+                <tr className="text-left text-xs uppercase tracking-wide text-foreground-subtle">
                   <th className="px-4 py-2 font-medium">Позиция</th>
                   <th className="px-4 py-2 font-medium">Остаток</th>
                   <th className="px-4 py-2 font-medium">Порог заказа</th>
@@ -61,21 +61,21 @@ export default async function WarehousePage() {
               </thead>
               <tbody>
                 {items.map((item) => (
-                  <tr key={item.name} className="border-t border-black/5">
+                  <tr key={item.name} className="border-t border-[var(--border)]">
                     <td className="px-4 py-2.5 font-medium text-foreground">{item.name}</td>
                     <td className="px-4 py-2.5 tabular-nums">
                       {item.quantityRemaining} {item.unit}
                     </td>
-                    <td className="px-4 py-2.5 tabular-nums text-foreground/60">
+                    <td className="px-4 py-2.5 tabular-nums text-foreground-muted">
                       {item.reorderThreshold} {item.unit}
                     </td>
                     <td className="px-4 py-2.5">
                       {item.isLow ? (
-                        <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">
+                        <span className="rounded-full bg-danger-soft px-2 py-0.5 text-xs font-medium text-danger">
                           Нужно заказать
                         </span>
                       ) : (
-                        <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">
+                        <span className="rounded-full bg-success-soft px-2 py-0.5 text-xs font-medium text-success">
                           В норме
                         </span>
                       )}
@@ -88,15 +88,15 @@ export default async function WarehousePage() {
         </div>
       ))}
 
-      <div className="rounded-2xl border border-black/5 bg-white">
-        <div className="border-b border-black/5 px-4 py-3 text-sm font-medium text-foreground">
+      <div className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
+        <div className="border-b border-[var(--border)] px-4 py-3 text-sm font-medium text-foreground">
           Тех.карты
         </div>
-        <ul className="divide-y divide-black/5">
+        <ul className="divide-y divide-[var(--border)]">
           {dishesWithRecipes.map((dish) => (
             <li key={dish.name} className="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 text-sm">
               <span className="font-medium text-foreground">{dish.name}</span>
-              <span className="text-foreground/50">
+              <span className="text-foreground-subtle">
                 {getRecipe(dish.name)
                   .map((line) => `${line.ingredient} ${line.quantity} ${line.unit}`)
                   .join(" · ")}
@@ -107,14 +107,14 @@ export default async function WarehousePage() {
       </div>
 
       {writeOffsByRestaurant.map(({ restaurant, writeOffs }) => (
-        <div key={restaurant.id} className="rounded-2xl border border-black/5 bg-white">
-          <div className="border-b border-black/5 px-4 py-3 text-sm font-medium text-foreground">
+        <div key={restaurant.id} className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
+          <div className="border-b border-[var(--border)] px-4 py-3 text-sm font-medium text-foreground">
             {isAll ? `${restaurant.name} · Последние списания` : "Последние списания"}
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-xs uppercase tracking-wide text-foreground/40">
+                <tr className="text-left text-xs uppercase tracking-wide text-foreground-subtle">
                   <th className="px-4 py-2 font-medium">Заказ</th>
                   <th className="px-4 py-2 font-medium">Блюдо</th>
                   <th className="px-4 py-2 font-medium">Списано</th>
@@ -123,10 +123,10 @@ export default async function WarehousePage() {
               </thead>
               <tbody>
                 {writeOffs.map((wo) => (
-                  <tr key={wo.orderId} className="border-t border-black/5">
+                  <tr key={wo.orderId} className="border-t border-[var(--border)]">
                     <td className="px-4 py-2.5 font-medium text-foreground">{wo.orderId}</td>
                     <td className="px-4 py-2.5">{wo.dishName}</td>
-                    <td className="px-4 py-2.5 text-foreground/60">
+                    <td className="px-4 py-2.5 text-foreground-muted">
                       {wo.ingredients.map((line) => `${line.ingredient} ${line.quantity}${line.unit}`).join(", ")}
                     </td>
                     <td className="px-4 py-2.5 tabular-nums">{wo.at}</td>

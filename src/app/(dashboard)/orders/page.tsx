@@ -17,11 +17,11 @@ export default async function OrdersPage() {
       <h1 className="text-lg font-semibold text-foreground">Заказы</h1>
       <DemoDataBanner />
 
-      <div className="rounded-2xl border border-black/5 bg-white">
+      <div className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-left text-xs uppercase tracking-wide text-foreground/40">
+              <tr className="text-left text-xs uppercase tracking-wide text-foreground-subtle">
                 <th className="px-4 py-2 font-medium">Заказ</th>
                 {isAll && <th className="px-4 py-2 font-medium">Ресторан</th>}
                 <th className="px-4 py-2 font-medium">Стол</th>
@@ -33,7 +33,7 @@ export default async function OrdersPage() {
             </thead>
             <tbody>
               {orders.map((order) => (
-                <tr key={`${order.restaurantName}-${order.id}`} className="border-t border-black/5">
+                <tr key={`${order.restaurantName}-${order.id}`} className="border-t border-[var(--border)]">
                   <td className="px-4 py-2.5 font-medium text-foreground">{order.id}</td>
                   {isAll && <td className="px-4 py-2.5">{order.restaurantName}</td>}
                   <td className="px-4 py-2.5">{order.table}</td>
@@ -41,8 +41,8 @@ export default async function OrdersPage() {
                     <span
                       className={`rounded-full px-2 py-0.5 text-xs font-medium ${
                         order.status === "OPEN"
-                          ? "bg-amber-100 text-amber-700"
-                          : "bg-emerald-100 text-emerald-700"
+                          ? "bg-warning-soft text-warning"
+                          : "bg-success-soft text-success"
                       }`}
                     >
                       {order.status === "OPEN" ? "Открыт" : "Закрыт"}

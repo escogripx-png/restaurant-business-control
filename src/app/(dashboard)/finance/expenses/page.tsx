@@ -26,11 +26,11 @@ export default async function ExpensesPage() {
       </div>
       <DemoDataBanner />
 
-      <div className="rounded-2xl border border-black/5 bg-white">
+      <div className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-left text-xs uppercase tracking-wide text-foreground/40">
+              <tr className="text-left text-xs uppercase tracking-wide text-foreground-subtle">
                 <th className="px-4 py-2 font-medium">Дата</th>
                 {isAll && <th className="px-4 py-2 font-medium">Ресторан</th>}
                 <th className="px-4 py-2 font-medium">Категория</th>
@@ -40,11 +40,11 @@ export default async function ExpensesPage() {
             </thead>
             <tbody>
               {expenses.map((e) => (
-                <tr key={`${e.restaurantName}-${e.id}`} className="border-t border-black/5">
+                <tr key={`${e.restaurantName}-${e.id}`} className="border-t border-[var(--border)]">
                   <td className="px-4 py-2.5 tabular-nums">{e.date}</td>
                   {isAll && <td className="px-4 py-2.5">{e.restaurantName}</td>}
                   <td className="px-4 py-2.5">{e.category}</td>
-                  <td className="px-4 py-2.5 text-foreground/60">{e.description}</td>
+                  <td className="px-4 py-2.5 text-foreground-muted">{e.description}</td>
                   <td className="px-4 py-2.5 tabular-nums">{formatMoney(e.amountMinor, e.currency)}</td>
                 </tr>
               ))}

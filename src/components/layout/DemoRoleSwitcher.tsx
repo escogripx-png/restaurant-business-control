@@ -22,7 +22,7 @@ export function DemoRoleSwitcher({ role }: { role: UserRole }) {
       disabled={isPending}
       onChange={(e) => handleChange(e.target.value as UserRole)}
       title="Демо-переключатель роли — показывает, чем отличаются права доступа"
-      className="rounded-lg border border-black/10 bg-white px-2 py-1 text-xs font-medium text-foreground outline-none disabled:opacity-60"
+      className="rounded-[10px] bg-surface-secondary px-2 py-1 text-xs font-medium text-foreground outline-none disabled:opacity-60"
     >
       <option value="OWNER">Владелец</option>
       <option value="MANAGER">Менеджер</option>

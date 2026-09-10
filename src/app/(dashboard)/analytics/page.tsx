@@ -67,8 +67,10 @@ export default async function AnalyticsPage({
           <Link
             key={p.key}
             href={`/analytics?period=${p.key}`}
-            className={`rounded-lg px-3 py-1.5 text-sm font-medium ${
-              period === p.key ? "bg-foreground text-white" : "bg-white text-foreground/60 border border-black/10"
+            className={`rounded-[10px] px-3 py-1.5 text-sm font-medium transition-colors ${
+              period === p.key
+                ? "bg-accent text-white"
+                : "bg-surface text-foreground-muted ring-1 ring-[var(--border)]"
             }`}
           >
             {p.label}
@@ -77,23 +79,21 @@ export default async function AnalyticsPage({
       </div>
 
       <div className="grid grid-cols-2 gap-3">
-        <div className="min-w-0 rounded-2xl border border-black/5 bg-white p-4">
-          <div className="text-xs font-medium uppercase tracking-wide text-foreground/50">
-            Выручка за период
-          </div>
-          <div className="mt-1.5 text-2xl font-semibold tabular-nums text-foreground">
+        <div className="min-w-0 rounded-[20px] bg-surface p-5 shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
+          <div className="text-[13px] font-medium text-foreground-subtle">Выручка за период</div>
+          <div className="mt-1 text-[26px] font-semibold tracking-tight tabular-nums text-foreground">
             {formatMoney(periodTotals.revenueMinor, currency)}
           </div>
         </div>
-        <div className="min-w-0 rounded-2xl border border-black/5 bg-white p-4">
-          <div className="text-xs font-medium uppercase tracking-wide text-foreground/50">Заказов</div>
-          <div className="mt-1.5 text-2xl font-semibold tabular-nums text-foreground">
+        <div className="min-w-0 rounded-[20px] bg-surface p-5 shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
+          <div className="text-[13px] font-medium text-foreground-subtle">Заказов</div>
+          <div className="mt-1 text-[26px] font-semibold tracking-tight tabular-nums text-foreground">
             {periodTotals.orders}
           </div>
         </div>
       </div>
 
-      <div className="rounded-2xl border border-black/5 bg-white p-4">
+      <div className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)] p-4">
         <div className="mb-3 text-sm font-medium text-foreground">Выручка по часам</div>
         <div className="flex gap-2">
           {Array.from(byHour.entries()).map(([hour, amountMinor]) => (
@@ -108,13 +108,13 @@ export default async function AnalyticsPage({
                   title={formatMoney(amountMinor, currency)}
                 />
               </div>
-              <span className="text-[10px] text-foreground/50">{hour}ч</span>
+              <span className="text-[10px] text-foreground-subtle">{hour}ч</span>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="rounded-2xl border border-black/5 bg-white p-4">
+      <div className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)] p-4">
         <div className="mb-3 text-sm font-medium text-foreground">Загруженность по часам (% занятых столов)</div>
         <div className="flex gap-2">
           {Array.from(occupancyByHour.entries()).map(([hour, values]) => {
@@ -123,19 +123,19 @@ export default async function AnalyticsPage({
               <div key={hour} className="flex min-w-0 flex-1 flex-col items-center gap-1.5">
                 <div className="flex h-40 w-full items-end">
                   <div
-                    className="w-full rounded-t-md bg-amber-400"
+                    className="w-full rounded-t-md bg-purple-400"
                     style={{ height: `${Math.max(4, avgPct)}%` }}
                     title={`${avgPct}%`}
                   />
                 </div>
-                <span className="text-[10px] text-foreground/50">{hour}ч</span>
+                <span className="text-[10px] text-foreground-subtle">{hour}ч</span>
               </div>
             );
           })}
         </div>
       </div>
 
-      <p className="text-sm text-foreground/50">
+      <p className="text-sm text-foreground-subtle">
         Разбивки по дням недели / ресторанам появятся в этом же разделе по мере подключения реальных
         данных (Phase 6).
       </p>

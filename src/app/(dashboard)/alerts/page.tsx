@@ -2,9 +2,9 @@ import { getDemoAlerts } from "@/server/demo/mock-operations";
 import { DemoDataBanner } from "@/components/dashboard/DemoDataBanner";
 
 const SEVERITY_STYLE: Record<string, string> = {
-  INFO: "bg-zinc-100 text-zinc-700",
-  WARNING: "bg-amber-100 text-amber-700",
-  CRITICAL: "bg-red-100 text-red-700",
+  INFO: "bg-surface-secondary text-foreground-muted",
+  WARNING: "bg-warning-soft text-warning",
+  CRITICAL: "bg-danger-soft text-danger",
 };
 
 const SEVERITY_LABEL: Record<string, string> = {
@@ -23,7 +23,7 @@ export default function AlertsPage() {
 
       <div className="flex flex-col gap-3">
         {alerts.map((alert) => (
-          <div key={alert.id} className="rounded-2xl border border-black/5 bg-white p-4">
+          <div key={alert.id} className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)] p-4">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <div className="flex items-center gap-2">
@@ -34,8 +34,8 @@ export default function AlertsPage() {
                   </span>
                   <span className="font-medium text-foreground">{alert.title}</span>
                 </div>
-                <p className="mt-1 text-sm text-foreground/60">{alert.description}</p>
-                <p className="mt-1 text-xs text-foreground/40">
+                <p className="mt-1 text-sm text-foreground-muted">{alert.description}</p>
+                <p className="mt-1 text-xs text-foreground-subtle">
                   {alert.restaurantName} · {alert.createdAt}
                 </p>
               </div>

@@ -34,19 +34,19 @@ export default async function FinancePage() {
       <div className="grid gap-3 sm:grid-cols-2">
         <Link
           href="/finance/expenses"
-          className="rounded-2xl border border-black/5 bg-white p-4 hover:border-black/15"
+          className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)] p-4 hover:ring-[color:var(--border-strong)]"
         >
           <div className="font-medium text-foreground">Расходы</div>
-          <p className="mt-1 text-sm text-foreground/50">
+          <p className="mt-1 text-sm text-foreground-subtle">
             Учёт расходов по категориям, повторяющиеся платежи (аренда, ФОТ и т.д.).
           </p>
         </Link>
         <Link
           href="/finance/pnl"
-          className="rounded-2xl border border-black/5 bg-white p-4 hover:border-black/15"
+          className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)] p-4 hover:ring-[color:var(--border-strong)]"
         >
           <div className="font-medium text-foreground">P&L</div>
-          <p className="mt-1 text-sm text-foreground/50">
+          <p className="mt-1 text-sm text-foreground-subtle">
             Прибыль (оценка) по периодам, разбивка по ресторанам и категориям.
           </p>
         </Link>

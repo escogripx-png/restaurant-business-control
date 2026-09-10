@@ -17,11 +17,11 @@ export default async function EmployeesPage() {
       <h1 className="text-lg font-semibold text-foreground">Сотрудники</h1>
       <DemoDataBanner />
 
-      <div className="rounded-2xl border border-black/5 bg-white">
+      <div className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-left text-xs uppercase tracking-wide text-foreground/40">
+              <tr className="text-left text-xs uppercase tracking-wide text-foreground-subtle">
                 <th className="px-4 py-2 font-medium">Сотрудник</th>
                 <th className="px-4 py-2 font-medium">Роль</th>
                 {isAll && <th className="px-4 py-2 font-medium">Ресторан</th>}
@@ -34,9 +34,9 @@ export default async function EmployeesPage() {
             </thead>
             <tbody>
               {employees.map((e) => (
-                <tr key={e.id} className="border-t border-black/5">
+                <tr key={e.id} className="border-t border-[var(--border)]">
                   <td className="px-4 py-2.5 font-medium text-foreground">{e.name}</td>
-                  <td className="px-4 py-2.5 text-foreground/60">{e.role}</td>
+                  <td className="px-4 py-2.5 text-foreground-muted">{e.role}</td>
                   {isAll && <td className="px-4 py-2.5">{e.restaurantName}</td>}
                   <td className="px-4 py-2.5 tabular-nums">{formatMoney(e.revenueMinor, e.currency)}</td>
                   <td className="px-4 py-2.5 tabular-nums">{e.orderCount}</td>

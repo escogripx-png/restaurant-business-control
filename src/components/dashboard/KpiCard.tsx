@@ -7,17 +7,16 @@ export function KpiCard({
   value: string;
   change?: number;
 }) {
-  const changeColor =
-    change === undefined ? "" : change >= 0 ? "text-emerald-600" : "text-red-600";
+  const changeColor = change === undefined ? "" : change >= 0 ? "text-success" : "text-danger";
 
   return (
-    <div className="min-w-0 rounded-2xl border border-black/5 bg-white p-4">
-      <div className="text-xs font-medium uppercase tracking-wide text-foreground/50">
-        {label}
+    <div className="min-w-0 rounded-[20px] bg-surface p-5 shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
+      <div className="text-[13px] font-medium text-foreground-subtle">{label}</div>
+      <div className="mt-1 text-[26px] font-semibold tracking-tight tabular-nums text-foreground">
+        {value}
       </div>
-      <div className="mt-1.5 text-2xl font-semibold tabular-nums text-foreground">{value}</div>
       {change !== undefined && (
-        <div className={`mt-1 text-xs font-medium ${changeColor}`}>
+        <div className={`mt-1 text-[13px] font-medium ${changeColor}`}>
           {change >= 0 ? "+" : ""}
           {change}% vs прошлый период
         </div>

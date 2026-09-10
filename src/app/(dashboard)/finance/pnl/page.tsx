@@ -30,28 +30,28 @@ export default async function PnlPage() {
       <h1 className="text-lg font-semibold text-foreground">P&L · Сентябрь 2026</h1>
       <DemoDataBanner />
 
-      <div className="rounded-2xl border border-black/5 bg-white p-4">
+      <div className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)] p-4">
         <dl className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
           <div className="min-w-0">
-            <dt className="text-foreground/50">Выручка</dt>
+            <dt className="text-foreground-subtle">Выручка</dt>
             <dd className="text-lg font-semibold tabular-nums text-foreground">
               {formatMoney(revenueMinor, currency)}
             </dd>
           </div>
           <div className="min-w-0">
-            <dt className="text-foreground/50">Расходы</dt>
+            <dt className="text-foreground-subtle">Расходы</dt>
             <dd className="text-lg font-semibold tabular-nums text-foreground">
               {formatMoney(expensesMinor, currency)}
             </dd>
           </div>
           <div className="min-w-0">
-            <dt className="text-foreground/50">Прибыль (оценка)</dt>
+            <dt className="text-foreground-subtle">Прибыль (оценка)</dt>
             <dd className="text-lg font-semibold tabular-nums text-foreground">
               {formatMoney(operatingResultMinor, currency)}
             </dd>
           </div>
           <div className="min-w-0">
-            <dt className="text-foreground/50">Маржа</dt>
+            <dt className="text-foreground-subtle">Маржа</dt>
             <dd className="text-lg font-semibold tabular-nums text-foreground">
               {Math.round((operatingResultMinor / revenueMinor) * 1000) / 10}%
             </dd>
@@ -59,13 +59,13 @@ export default async function PnlPage() {
         </dl>
       </div>
 
-      <div className="rounded-2xl border border-black/5 bg-white p-4">
+      <div className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)] p-4">
         <div className="mb-3 text-sm font-medium text-foreground">Расходы по категориям</div>
         <div className="flex flex-col gap-2">
           {Array.from(byCategoryTotals.entries()).map(([category, amountMinor]) => (
             <div key={category} className="flex items-center gap-3">
-              <div className="w-36 shrink-0 text-sm text-foreground/60">{category}</div>
-              <div className="h-2 flex-1 overflow-hidden rounded-full bg-black/5">
+              <div className="w-36 shrink-0 text-sm text-foreground-muted">{category}</div>
+              <div className="h-2 flex-1 overflow-hidden rounded-full bg-surface-secondary">
                 <div
                   className="h-full rounded-full bg-accent"
                   style={{ width: `${Math.max(4, (amountMinor / maxCategoryMinor) * 100)}%` }}

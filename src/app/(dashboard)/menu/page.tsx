@@ -23,17 +23,17 @@ export default async function MenuPage() {
       <DemoDataBanner />
 
       {topByRestaurant.map(({ restaurant, items }) => (
-        <div key={restaurant.id} className="rounded-2xl border border-black/5 bg-white">
-          <div className="border-b border-black/5 px-4 py-3 text-sm font-medium text-foreground">
+        <div key={restaurant.id} className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
+          <div className="border-b border-[var(--border)] px-4 py-3 text-sm font-medium text-foreground">
             {restaurant.name} · Топ блюд
           </div>
-          <ul className="divide-y divide-black/5">
+          <ul className="divide-y divide-[var(--border)]">
             {items.map((item, i) => (
               <li key={item.name} className="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
                 <span className="min-w-0 flex-1 truncate text-foreground">
                   {i + 1}. {item.name}
                 </span>
-                <span className="shrink-0 text-foreground/50">{item.quantitySold} шт</span>
+                <span className="shrink-0 text-foreground-subtle">{item.quantitySold} шт</span>
                 <span className="shrink-0 tabular-nums text-foreground">
                   {formatMoney(item.revenueMinor, restaurant.currency)}
                 </span>
@@ -44,15 +44,15 @@ export default async function MenuPage() {
       ))}
 
       {bottomByRestaurant.map(({ restaurant, items }) => (
-        <div key={restaurant.id} className="rounded-2xl border border-black/5 bg-white">
-          <div className="border-b border-black/5 px-4 py-3 text-sm font-medium text-foreground">
+        <div key={restaurant.id} className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
+          <div className="border-b border-[var(--border)] px-4 py-3 text-sm font-medium text-foreground">
             {restaurant.name} · Меньше всего продаж
           </div>
-          <ul className="divide-y divide-black/5">
+          <ul className="divide-y divide-[var(--border)]">
             {items.map((item) => (
               <li key={item.name} className="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
                 <span className="min-w-0 flex-1 truncate text-foreground">{item.name}</span>
-                <span className="shrink-0 text-foreground/50">{item.quantitySold} шт</span>
+                <span className="shrink-0 text-foreground-subtle">{item.quantitySold} шт</span>
                 <span className="shrink-0 tabular-nums text-foreground">
                   {formatMoney(item.revenueMinor, restaurant.currency)}
                 </span>
@@ -63,7 +63,7 @@ export default async function MenuPage() {
       ))}
 
       {scopedRestaurants.length === 0 && (
-        <p className="text-sm text-foreground/50">Нет доступных ресторанов.</p>
+        <p className="text-sm text-foreground-subtle">Нет доступных ресторанов.</p>
       )}
     </div>
   );

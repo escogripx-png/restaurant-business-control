@@ -29,7 +29,7 @@ export function RestaurantSwitcher({
       value={selectedId}
       disabled={isPending}
       onChange={(e) => handleChange(e.target.value)}
-      className="rounded-lg border border-black/10 bg-white px-3 py-1.5 text-sm font-medium text-foreground outline-none disabled:opacity-60"
+      className="rounded-[10px] bg-surface-secondary px-3 py-1.5 text-sm font-medium text-foreground outline-none disabled:opacity-60"
     >
       <option value={ALL_RESTAURANTS}>Все рестораны</option>
       {restaurants.map((restaurant) => (

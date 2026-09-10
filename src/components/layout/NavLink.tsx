@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { NavItem } from "@/components/layout/nav-items";
+import { NavIcon } from "@/components/layout/icons";
 
 export function NavLink({ item, className }: { item: NavItem; className?: string }) {
   const pathname = usePathname();
@@ -15,7 +16,9 @@ export function NavLink({ item, className }: { item: NavItem; className?: string
       className={className}
       data-active={isActive}
     >
-      {item.icon && <span aria-hidden>{item.icon}</span>}
+      <span aria-hidden className="shrink-0">
+        <NavIcon name={item.icon} />
+      </span>
       {/* w-full (not just max-w-full) so this actually has a bounded box to
           truncate against — the parent Link is a column flexbox with
           items-center, which sizes children to their natural width instead

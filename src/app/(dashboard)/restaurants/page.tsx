@@ -10,15 +10,15 @@ export default async function RestaurantsPage() {
       <h1 className="text-lg font-semibold text-foreground">Рестораны</h1>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {restaurants.map((restaurant) => (
-          <div key={restaurant.id} className="rounded-2xl border border-black/5 bg-white p-4">
+          <div key={restaurant.id} className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)] p-4">
             <div className="font-medium text-foreground">{restaurant.name}</div>
-            <div className="mt-1 text-sm text-foreground/50">
+            <div className="mt-1 text-sm text-foreground-subtle">
               {restaurant.timezone} · {restaurant.currency}
             </div>
           </div>
         ))}
         {restaurants.length === 0 && (
-          <p className="text-sm text-foreground/50">Нет доступных ресторанов.</p>
+          <p className="text-sm text-foreground-subtle">Нет доступных ресторанов.</p>
         )}
       </div>
     </div>
