@@ -59,7 +59,7 @@ export default async function AnalyticsPage({
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Аналитика</h1>
+      <h1 className="font-serif text-[26px] font-semibold tracking-tight text-foreground">Аналитика</h1>
       <DemoDataBanner />
 
       <div className="flex gap-2">
@@ -78,15 +78,15 @@ export default async function AnalyticsPage({
         ))}
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="min-w-0 rounded-[20px] bg-surface p-5 shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
-          <div className="text-[13px] font-medium text-foreground-subtle">Выручка за период</div>
+          <div className="text-[13px] font-medium text-foreground-muted">Выручка за период</div>
           <div className="mt-1 text-[26px] font-semibold tracking-tight tabular-nums text-foreground">
             {formatMoney(periodTotals.revenueMinor, currency)}
           </div>
         </div>
         <div className="min-w-0 rounded-[20px] bg-surface p-5 shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
-          <div className="text-[13px] font-medium text-foreground-subtle">Заказов</div>
+          <div className="text-[13px] font-medium text-foreground-muted">Заказов</div>
           <div className="mt-1 text-[26px] font-semibold tracking-tight tabular-nums text-foreground">
             {periodTotals.orders}
           </div>
@@ -108,7 +108,7 @@ export default async function AnalyticsPage({
                   title={formatMoney(amountMinor, currency)}
                 />
               </div>
-              <span className="text-[10px] text-foreground-subtle">{hour}ч</span>
+              <span className="text-[11px] text-foreground-muted">{hour}ч</span>
             </div>
           ))}
         </div>
@@ -128,7 +128,7 @@ export default async function AnalyticsPage({
                     title={`${avgPct}%`}
                   />
                 </div>
-                <span className="text-[10px] text-foreground-subtle">{hour}ч</span>
+                <span className="text-[11px] text-foreground-muted">{hour}ч</span>
               </div>
             );
           })}

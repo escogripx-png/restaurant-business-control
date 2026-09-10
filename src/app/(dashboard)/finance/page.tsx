@@ -18,10 +18,10 @@ export default async function FinancePage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Финансы</h1>
+      <h1 className="font-serif text-[26px] font-semibold tracking-tight text-foreground">Финансы</h1>
       <DemoDataBanner />
 
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
         <KpiCard label="Выручка (месяц)" value={formatMoney(revenueMinor, currency)} />
         <KpiCard label="Расходы (месяц)" value={formatMoney(expensesMinor, currency)} />
         <KpiCard label="Прибыль (оценка)" value={formatMoney(operatingResultMinor, currency)} />

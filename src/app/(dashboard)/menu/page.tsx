@@ -19,7 +19,7 @@ export default async function MenuPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Меню</h1>
+      <h1 className="font-serif text-[26px] font-semibold tracking-tight text-foreground">Меню</h1>
       <DemoDataBanner />
 
       {topByRestaurant.map(({ restaurant, items }) => (

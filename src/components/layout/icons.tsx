@@ -18,8 +18,8 @@ export type IconName =
   | "settings";
 
 const commonProps = {
-  width: 18,
-  height: 18,
+  width: 21,
+  height: 21,
   viewBox: "0 0 20 20",
   fill: "none",
   stroke: "currentColor",

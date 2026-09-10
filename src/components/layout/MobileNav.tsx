@@ -8,7 +8,7 @@ export function MobileNav() {
         <NavLink
           key={item.href}
           item={item}
-          className="flex min-w-0 flex-1 flex-col items-center gap-1 py-2.5 text-[10px] font-medium text-foreground-subtle transition-colors data-[active=true]:text-accent"
+          className="flex min-w-0 flex-1 flex-col items-center gap-1 py-3 text-[12px] font-medium text-foreground-muted transition-colors data-[active=true]:text-accent [&_svg]:transition-[filter] data-[active=true]:[&_svg]:drop-shadow-[0_0_6px_rgba(34,211,238,0.5)]"
         />
       ))}
     </nav>

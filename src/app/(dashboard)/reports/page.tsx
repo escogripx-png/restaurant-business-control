@@ -9,14 +9,14 @@ const DEMO_REPORTS = [
 export default function ReportsPage() {
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Отчёты</h1>
+      <h1 className="font-serif text-[26px] font-semibold tracking-tight text-foreground">Отчёты</h1>
       <DemoDataBanner />
 
       <div className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)]">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-left text-xs uppercase tracking-wide text-foreground-subtle">
+              <tr className="text-left text-[13px] font-medium text-foreground-muted">
                 <th className="px-4 py-2 font-medium">Период</th>
                 <th className="px-4 py-2 font-medium">Сформирован</th>
                 <th className="px-4 py-2 font-medium">Экспорт</th>

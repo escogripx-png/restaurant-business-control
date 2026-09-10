@@ -29,7 +29,7 @@ export default async function DashboardPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-lg font-semibold text-foreground">
+        <h1 className="font-serif text-[26px] font-semibold tracking-tight text-foreground">
           {isAll ? "Все рестораны" : scopedRestaurants[0]?.name}
         </h1>
         <p className="text-sm text-foreground-subtle">Обновлено только что · демо-режим</p>
@@ -43,7 +43,7 @@ export default async function DashboardPage() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
             <KpiCard
               label="Текущая выручка"
               value={formatMoney(currentRevenueMinor, currency)}
@@ -65,7 +65,7 @@ export default async function DashboardPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="text-left text-xs uppercase tracking-wide text-foreground-subtle">
+                    <tr className="text-left text-[13px] font-medium text-foreground-muted">
                       <th className="px-4 py-2 font-medium">Ресторан</th>
                       <th className="px-4 py-2 font-medium">Текущая выручка</th>
                       <th className="px-4 py-2 font-medium">Открытые заказы</th>

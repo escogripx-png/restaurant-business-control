@@ -11,7 +11,7 @@ export default async function SettingsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Настройки</h1>
+      <h1 className="font-serif text-[26px] font-semibold tracking-tight text-foreground">Настройки</h1>
 
       <section className="rounded-2xl bg-surface shadow-[var(--shadow-card)] ring-1 ring-[var(--border)] p-4">
         <h2 className="text-sm font-medium text-foreground">Организация</h2>

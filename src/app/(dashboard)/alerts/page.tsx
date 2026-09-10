@@ -18,7 +18,7 @@ export default function AlertsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Уведомления</h1>
+      <h1 className="font-serif text-[26px] font-semibold tracking-tight text-foreground">Уведомления</h1>
       <DemoDataBanner />
 
       <div className="flex flex-col gap-3">
