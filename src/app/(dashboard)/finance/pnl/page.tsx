@@ -7,7 +7,7 @@ import { DemoDataBanner } from "@/components/dashboard/DemoDataBanner";
 export default async function PnlPage() {
   const user = await requireUser();
   const { scopedRestaurants } = await resolveRestaurantScope(user);
-  const currency = scopedRestaurants[0]?.currency ?? "CZK";
+  const currency = scopedRestaurants[0]?.currency ?? "RUB";
 
   const byCategoryTotals = new Map<string, number>();
   let revenueMinor = 0;
@@ -33,25 +33,25 @@ export default async function PnlPage() {
       <div className="rounded-2xl border border-black/5 bg-white p-4">
         <dl className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
           <div>
-            <dt className="text-foreground/50">Revenue</dt>
+            <dt className="text-foreground/50">Выручка</dt>
             <dd className="text-lg font-semibold tabular-nums text-foreground">
               {formatMoney(revenueMinor, currency)}
             </dd>
           </div>
           <div>
-            <dt className="text-foreground/50">Expenses</dt>
+            <dt className="text-foreground/50">Расходы</dt>
             <dd className="text-lg font-semibold tabular-nums text-foreground">
               {formatMoney(expensesMinor, currency)}
             </dd>
           </div>
           <div>
-            <dt className="text-foreground/50">Estimated Operating Profit</dt>
+            <dt className="text-foreground/50">Прибыль (оценка)</dt>
             <dd className="text-lg font-semibold tabular-nums text-foreground">
               {formatMoney(operatingResultMinor, currency)}
             </dd>
           </div>
           <div>
-            <dt className="text-foreground/50">Margin</dt>
+            <dt className="text-foreground/50">Маржа</dt>
             <dd className="text-lg font-semibold tabular-nums text-foreground">
               {Math.round((operatingResultMinor / revenueMinor) * 1000) / 10}%
             </dd>
@@ -60,7 +60,7 @@ export default async function PnlPage() {
       </div>
 
       <div className="rounded-2xl border border-black/5 bg-white p-4">
-        <div className="mb-3 text-sm font-medium text-foreground">Expenses by category</div>
+        <div className="mb-3 text-sm font-medium text-foreground">Расходы по категориям</div>
         <div className="flex flex-col gap-2">
           {Array.from(byCategoryTotals.entries()).map(([category, amountMinor]) => (
             <div key={category} className="flex items-center gap-3">

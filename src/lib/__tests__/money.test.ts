@@ -17,4 +17,9 @@ describe("money conversions", () => {
     expect(formatMoney(18745000, "CZK")).toContain("187");
     expect(formatMoney(18745000, "CZK")).not.toMatch(/,\d{2}(?!\d)/);
   });
+
+  it("formats RUB with no decimal places (default locale)", () => {
+    expect(formatMoney(18745000, "RUB")).toContain("187");
+    expect(formatMoney(18745000, "RUB")).not.toMatch(/[,.]\d{2}(?!\d)/);
+  });
 });

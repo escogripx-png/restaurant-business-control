@@ -9,7 +9,7 @@ const DEMO_REPORTS = [
 export default function ReportsPage() {
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Reports</h1>
+      <h1 className="text-lg font-semibold text-foreground">Отчёты</h1>
       <DemoDataBanner />
 
       <div className="rounded-2xl border border-black/5 bg-white">
@@ -17,9 +17,9 @@ export default function ReportsPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-xs uppercase tracking-wide text-foreground/40">
-                <th className="px-4 py-2 font-medium">Period</th>
-                <th className="px-4 py-2 font-medium">Generated</th>
-                <th className="px-4 py-2 font-medium">Export</th>
+                <th className="px-4 py-2 font-medium">Период</th>
+                <th className="px-4 py-2 font-medium">Сформирован</th>
+                <th className="px-4 py-2 font-medium">Экспорт</th>
               </tr>
             </thead>
             <tbody>

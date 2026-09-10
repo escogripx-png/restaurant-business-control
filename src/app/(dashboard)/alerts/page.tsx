@@ -7,12 +7,18 @@ const SEVERITY_STYLE: Record<string, string> = {
   CRITICAL: "bg-red-100 text-red-700",
 };
 
+const SEVERITY_LABEL: Record<string, string> = {
+  INFO: "Инфо",
+  WARNING: "Внимание",
+  CRITICAL: "Критично",
+};
+
 export default function AlertsPage() {
   const alerts = getDemoAlerts();
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Alerts</h1>
+      <h1 className="text-lg font-semibold text-foreground">Уведомления</h1>
       <DemoDataBanner />
 
       <div className="flex flex-col gap-3">
@@ -24,7 +30,7 @@ export default function AlertsPage() {
                   <span
                     className={`rounded-full px-2 py-0.5 text-xs font-medium ${SEVERITY_STYLE[alert.severity]}`}
                   >
-                    {alert.severity}
+                    {SEVERITY_LABEL[alert.severity]}
                   </span>
                   <span className="font-medium text-foreground">{alert.title}</span>
                 </div>

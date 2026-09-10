@@ -25,7 +25,7 @@ export function getDemoOrders(restaurantId: string): DemoOrder[] {
     const minute = Math.floor(seededRandom(`${restaurantId}-min-${i}`) * 60);
     return {
       id: `ORD-${1000 + i}`,
-      table: `Table ${1 + (i % 12)}`,
+      table: `Стол ${1 + (i % 12)}`,
       status: r > 0.8 ? "OPEN" : "CLOSED",
       amountMinor: Math.round((300 + r * 2500) * 100),
       employeeName: employee?.name ?? "—",
@@ -71,7 +71,7 @@ export type DemoExpense = {
   description: string;
 };
 
-const EXPENSE_CATEGORIES = ["Food purchasing", "Payroll", "Rent", "Marketing", "Bar / alcohol"];
+const EXPENSE_CATEGORIES = ["Продукты", "ФОТ", "Аренда", "Маркетинг", "Бар / алкоголь"];
 
 export function getDemoExpenses(restaurantId: string): DemoExpense[] {
   return Array.from({ length: 8 }, (_, i) => {
@@ -82,7 +82,7 @@ export function getDemoExpenses(restaurantId: string): DemoExpense[] {
       date: `2026-09-${String(1 + i).padStart(2, "0")}`,
       category,
       amountMinor: Math.round((2000 + r * 30_000) * 100),
-      description: `${category} — demo entry`,
+      description: `${category} — демо-запись`,
     };
   });
 }
@@ -91,11 +91,11 @@ export function getDemoExpenses(restaurantId: string): DemoExpense[] {
 // restaurant, so the demo P&L lands on a plausible 5-15% margin instead of
 // an implausible ~90% — real ratios come from Expense entities in Phase 5.
 const EXPENSE_RATIO: Record<string, number> = {
-  "Food purchasing": 0.3,
-  Payroll: 0.28,
-  Rent: 0.08,
-  Marketing: 0.04,
-  "Bar / alcohol": 0.1,
+  "Продукты": 0.3,
+  "ФОТ": 0.28,
+  "Аренда": 0.08,
+  "Маркетинг": 0.04,
+  "Бар / алкоголь": 0.1,
 };
 
 export function getDemoPnl(restaurantId: string) {
@@ -143,9 +143,9 @@ export function getDemoOperations(restaurantId: string): DemoOperationEvent[] {
   const employees = DEMO_EMPLOYEES.filter((e) => e.restaurantId === restaurantId);
   const types: DemoOperationEvent["type"][] = ["DISCOUNT", "VOID", "REFUND"];
   const reasons: Record<DemoOperationEvent["type"], string[]> = {
-    DISCOUNT: ["Loyalty discount", "Manager comp", "Birthday promo"],
-    VOID: ["Wrong item entered", "Kitchen error", "Guest changed mind"],
-    REFUND: ["Quality complaint", "Duplicate charge", "Order cancelled"],
+    DISCOUNT: ["Скидка по программе лояльности", "Комплимент от менеджера", "Промо ко дню рождения"],
+    VOID: ["Ошибка при вводе блюда", "Ошибка кухни", "Гость передумал"],
+    REFUND: ["Жалоба на качество", "Задвоенный платёж", "Заказ отменён"],
   };
 
   return Array.from({ length: 6 }, (_, i) => {
@@ -178,25 +178,25 @@ export function getDemoAlerts(): DemoAlert[] {
     {
       id: "ALT-1",
       severity: "WARNING",
-      title: "Void rate above peers",
-      description: "Petr Svoboda: void rate 8.2% vs team average 2.1% over the last 7 days.",
-      restaurantName: "Restaurant Prague 1",
+      title: "Повышенная доля сторно у сотрудника",
+      description: "Пётр Иванов: доля сторно 8.2% против средних 2.1% по команде за последние 7 дней.",
+      restaurantName: "Ресторан №1",
       createdAt: "2026-09-09 14:20",
     },
     {
       id: "ALT-2",
       severity: "CRITICAL",
-      title: "Revenue below historical baseline",
-      description: "Friday 19:00–20:00 revenue is 32.6% below the typical range for this slot.",
-      restaurantName: "Restaurant Prague 2",
+      title: "Выручка ниже исторической нормы",
+      description: "Выручка в пятницу 19:00–20:00 на 32.6% ниже типичного диапазона для этого времени.",
+      restaurantName: "Ресторан №2",
       createdAt: "2026-09-08 20:05",
     },
     {
       id: "ALT-3",
       severity: "INFO",
-      title: "Discount level unusually high",
-      description: "Average discount this week is 9.4%, above the usual 4–6% range.",
-      restaurantName: "Restaurant Prague 1",
+      title: "Необычно высокий уровень скидок",
+      description: "Средняя скидка за неделю — 9.4%, выше обычного диапазона 4–6%.",
+      restaurantName: "Ресторан №1",
       createdAt: "2026-09-07 11:00",
     },
   ];

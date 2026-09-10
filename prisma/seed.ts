@@ -11,7 +11,7 @@ async function main() {
     update: {},
     create: {
       id: "seed-org-1",
-      name: "Demo Restaurant Group",
+      name: "Демо-сеть ресторанов",
     },
   });
 
@@ -22,9 +22,9 @@ async function main() {
       create: {
         id: "seed-restaurant-1",
         organizationId: org.id,
-        name: "Restaurant Prague 1",
-        timezone: "Europe/Prague",
-        currency: "CZK",
+        name: "Ресторан №1",
+        timezone: "Europe/Moscow",
+        currency: "RUB",
       },
     }),
     prisma.restaurant.upsert({
@@ -33,9 +33,9 @@ async function main() {
       create: {
         id: "seed-restaurant-2",
         organizationId: org.id,
-        name: "Restaurant Prague 2",
-        timezone: "Europe/Prague",
-        currency: "CZK",
+        name: "Ресторан №2",
+        timezone: "Europe/Moscow",
+        currency: "RUB",
       },
     }),
   ]);

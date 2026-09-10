@@ -9,7 +9,7 @@ import { DemoDataBanner } from "@/components/dashboard/DemoDataBanner";
 export default async function FinancePage() {
   const user = await requireUser();
   const { scopedRestaurants } = await resolveRestaurantScope(user);
-  const currency = scopedRestaurants[0]?.currency ?? "CZK";
+  const currency = scopedRestaurants[0]?.currency ?? "RUB";
 
   const pnls = scopedRestaurants.map((r) => getDemoPnl(r.id));
   const revenueMinor = pnls.reduce((s, p) => s + p.revenueMinor, 0);
@@ -18,15 +18,15 @@ export default async function FinancePage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Finance</h1>
+      <h1 className="text-lg font-semibold text-foreground">Финансы</h1>
       <DemoDataBanner />
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-        <KpiCard label="Revenue (month)" value={formatMoney(revenueMinor, currency)} />
-        <KpiCard label="Expenses (month)" value={formatMoney(expensesMinor, currency)} />
-        <KpiCard label="Estimated Operating Profit" value={formatMoney(operatingResultMinor, currency)} />
+        <KpiCard label="Выручка (месяц)" value={formatMoney(revenueMinor, currency)} />
+        <KpiCard label="Расходы (месяц)" value={formatMoney(expensesMinor, currency)} />
+        <KpiCard label="Прибыль (оценка)" value={formatMoney(operatingResultMinor, currency)} />
         <KpiCard
-          label="Margin"
+          label="Маржа"
           value={`${Math.round((operatingResultMinor / revenueMinor) * 1000) / 10}%`}
         />
       </div>
@@ -36,7 +36,7 @@ export default async function FinancePage() {
           href="/finance/expenses"
           className="rounded-2xl border border-black/5 bg-white p-4 hover:border-black/15"
         >
-          <div className="font-medium text-foreground">Expenses</div>
+          <div className="font-medium text-foreground">Расходы</div>
           <p className="mt-1 text-sm text-foreground/50">
             Учёт расходов по категориям, повторяющиеся платежи (аренда, ФОТ и т.д.).
           </p>
@@ -47,7 +47,7 @@ export default async function FinancePage() {
         >
           <div className="font-medium text-foreground">P&L</div>
           <p className="mt-1 text-sm text-foreground/50">
-            Estimated Operating Profit по периодам, разбивка по ресторанам и категориям.
+            Прибыль (оценка) по периодам, разбивка по ресторанам и категориям.
           </p>
         </Link>
       </div>

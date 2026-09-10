@@ -9,7 +9,7 @@ import { DemoDataBanner } from "@/components/dashboard/DemoDataBanner";
 export default async function LivePage() {
   const user = await requireUser();
   const { scopedRestaurants, isAll } = await resolveRestaurantScope(user);
-  const currency = scopedRestaurants[0]?.currency ?? "CZK";
+  const currency = scopedRestaurants[0]?.currency ?? "RUB";
 
   const metrics = scopedRestaurants.map((r) => getDemoMetricsForRestaurant(r.id));
   const totals = sumDemoMetrics(metrics);
@@ -23,7 +23,7 @@ export default async function LivePage() {
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="text-lg font-semibold text-foreground">
-          {isAll ? "Live · Все рестораны" : `Live · ${scopedRestaurants[0]?.name}`}
+          {isAll ? "Онлайн · Все рестораны" : `Онлайн · ${scopedRestaurants[0]?.name}`}
         </h1>
         <p className="text-sm text-foreground/50">Обновлено только что</p>
       </div>
@@ -31,28 +31,28 @@ export default async function LivePage() {
       <DemoDataBanner />
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-        <KpiCard label="Closed" value={formatMoney(totals.closedRevenueMinor, currency)} />
-        <KpiCard label="Open" value={formatMoney(totals.openOrdersMinor, currency)} />
+        <KpiCard label="Закрыто" value={formatMoney(totals.closedRevenueMinor, currency)} />
+        <KpiCard label="Открыто" value={formatMoney(totals.openOrdersMinor, currency)} />
         <KpiCard
-          label="Current"
+          label="Итого сейчас"
           value={formatMoney(totals.closedRevenueMinor + totals.openOrdersMinor, currency)}
         />
       </div>
 
       <div className="rounded-2xl border border-black/5 bg-white">
         <div className="border-b border-black/5 px-4 py-3 text-sm font-medium text-foreground">
-          Open orders ({openOrders.length})
+          Открытые заказы ({openOrders.length})
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-xs uppercase tracking-wide text-foreground/40">
-                <th className="px-4 py-2 font-medium">Order</th>
-                {isAll && <th className="px-4 py-2 font-medium">Restaurant</th>}
-                <th className="px-4 py-2 font-medium">Table</th>
-                <th className="px-4 py-2 font-medium">Opened</th>
-                <th className="px-4 py-2 font-medium">Waiter</th>
-                <th className="px-4 py-2 font-medium">Amount</th>
+                <th className="px-4 py-2 font-medium">Заказ</th>
+                {isAll && <th className="px-4 py-2 font-medium">Ресторан</th>}
+                <th className="px-4 py-2 font-medium">Стол</th>
+                <th className="px-4 py-2 font-medium">Открыт</th>
+                <th className="px-4 py-2 font-medium">Официант</th>
+                <th className="px-4 py-2 font-medium">Сумма</th>
               </tr>
             </thead>
             <tbody>

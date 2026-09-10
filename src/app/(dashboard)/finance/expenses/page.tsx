@@ -15,13 +15,13 @@ export default async function ExpensesPage() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-lg font-semibold text-foreground">Expenses</h1>
+        <h1 className="text-lg font-semibold text-foreground">Расходы</h1>
         <button
           disabled
           title="Появится, когда будет готова форма добавления расходов"
           className="rounded-lg bg-foreground px-3 py-1.5 text-sm font-medium text-white opacity-40"
         >
-          + Add expense
+          + Добавить расход
         </button>
       </div>
       <DemoDataBanner />
@@ -31,11 +31,11 @@ export default async function ExpensesPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-xs uppercase tracking-wide text-foreground/40">
-                <th className="px-4 py-2 font-medium">Date</th>
-                {isAll && <th className="px-4 py-2 font-medium">Restaurant</th>}
-                <th className="px-4 py-2 font-medium">Category</th>
-                <th className="px-4 py-2 font-medium">Description</th>
-                <th className="px-4 py-2 font-medium">Amount</th>
+                <th className="px-4 py-2 font-medium">Дата</th>
+                {isAll && <th className="px-4 py-2 font-medium">Ресторан</th>}
+                <th className="px-4 py-2 font-medium">Категория</th>
+                <th className="px-4 py-2 font-medium">Описание</th>
+                <th className="px-4 py-2 font-medium">Сумма</th>
               </tr>
             </thead>
             <tbody>

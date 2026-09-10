@@ -7,7 +7,7 @@ export default async function RestaurantsPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-lg font-semibold text-foreground">Restaurants</h1>
+      <h1 className="text-lg font-semibold text-foreground">Рестораны</h1>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {restaurants.map((restaurant) => (
           <div key={restaurant.id} className="rounded-2xl border border-black/5 bg-white p-4">

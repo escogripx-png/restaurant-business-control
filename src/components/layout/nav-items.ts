@@ -5,25 +5,25 @@ export type NavItem = {
 };
 
 export const PRIMARY_NAV_ITEMS: NavItem[] = [
-  { href: "/dashboard", label: "Dashboard", icon: "◧" },
-  { href: "/live", label: "Live", icon: "●" },
-  { href: "/restaurants", label: "Restaurants", icon: "▦" },
-  { href: "/orders", label: "Orders", icon: "▤" },
-  { href: "/employees", label: "Employees", icon: "◔" },
-  { href: "/finance", label: "Finance", icon: "$" },
-  { href: "/analytics", label: "Analytics", icon: "▲" },
-  { href: "/operations", label: "Operations", icon: "◆" },
-  { href: "/alerts", label: "Alerts", icon: "!" },
-  { href: "/reports", label: "Reports", icon: "▥" },
-  { href: "/settings", label: "Settings", icon: "⚙" },
+  { href: "/dashboard", label: "Дашборд", icon: "◧" },
+  { href: "/live", label: "Онлайн", icon: "●" },
+  { href: "/restaurants", label: "Рестораны", icon: "▦" },
+  { href: "/orders", label: "Заказы", icon: "▤" },
+  { href: "/employees", label: "Сотрудники", icon: "◔" },
+  { href: "/finance", label: "Финансы", icon: "$" },
+  { href: "/analytics", label: "Аналитика", icon: "▲" },
+  { href: "/operations", label: "Операции", icon: "◆" },
+  { href: "/alerts", label: "Уведомления", icon: "!" },
+  { href: "/reports", label: "Отчёты", icon: "▥" },
+  { href: "/settings", label: "Настройки", icon: "⚙" },
 ];
 
 // Compact subset for the mobile bottom bar (MASTER SPEC §36/§38) — a full
 // eleven-item sidebar doesn't fit a thumb-reachable bar.
 export const MOBILE_NAV_ITEMS: NavItem[] = [
-  { href: "/dashboard", label: "Dashboard", icon: "◧" },
-  { href: "/live", label: "Live", icon: "●" },
-  { href: "/finance", label: "Finance", icon: "$" },
-  { href: "/alerts", label: "Alerts", icon: "!" },
-  { href: "/settings", label: "Settings", icon: "⚙" },
+  { href: "/dashboard", label: "Дашборд", icon: "◧" },
+  { href: "/live", label: "Онлайн", icon: "●" },
+  { href: "/finance", label: "Финансы", icon: "$" },
+  { href: "/alerts", label: "Уведомл.", icon: "!" },
+  { href: "/settings", label: "Настройки", icon: "⚙" },
 ];

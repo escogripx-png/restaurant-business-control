@@ -14,7 +14,7 @@ export default async function OrdersPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Orders</h1>
+      <h1 className="text-lg font-semibold text-foreground">Заказы</h1>
       <DemoDataBanner />
 
       <div className="rounded-2xl border border-black/5 bg-white">
@@ -22,13 +22,13 @@ export default async function OrdersPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-xs uppercase tracking-wide text-foreground/40">
-                <th className="px-4 py-2 font-medium">Order</th>
-                {isAll && <th className="px-4 py-2 font-medium">Restaurant</th>}
-                <th className="px-4 py-2 font-medium">Table</th>
-                <th className="px-4 py-2 font-medium">Status</th>
-                <th className="px-4 py-2 font-medium">Opened</th>
-                <th className="px-4 py-2 font-medium">Waiter</th>
-                <th className="px-4 py-2 font-medium">Amount</th>
+                <th className="px-4 py-2 font-medium">Заказ</th>
+                {isAll && <th className="px-4 py-2 font-medium">Ресторан</th>}
+                <th className="px-4 py-2 font-medium">Стол</th>
+                <th className="px-4 py-2 font-medium">Статус</th>
+                <th className="px-4 py-2 font-medium">Открыт</th>
+                <th className="px-4 py-2 font-medium">Официант</th>
+                <th className="px-4 py-2 font-medium">Сумма</th>
               </tr>
             </thead>
             <tbody>
@@ -45,7 +45,7 @@ export default async function OrdersPage() {
                           : "bg-emerald-100 text-emerald-700"
                       }`}
                     >
-                      {order.status}
+                      {order.status === "OPEN" ? "Открыт" : "Закрыт"}
                     </span>
                   </td>
                   <td className="px-4 py-2.5 tabular-nums">{order.openedAt}</td>

@@ -7,7 +7,7 @@ import { DemoDataBanner } from "@/components/dashboard/DemoDataBanner";
 export default async function AnalyticsPage() {
   const user = await requireUser();
   const { scopedRestaurants } = await resolveRestaurantScope(user);
-  const currency = scopedRestaurants[0]?.currency ?? "CZK";
+  const currency = scopedRestaurants[0]?.currency ?? "RUB";
 
   const byHour = new Map<number, number>();
   for (const restaurant of scopedRestaurants) {
@@ -19,7 +19,7 @@ export default async function AnalyticsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Analytics · Revenue by hour</h1>
+      <h1 className="text-lg font-semibold text-foreground">Аналитика · Выручка по часам</h1>
       <DemoDataBanner />
 
       <div className="rounded-2xl border border-black/5 bg-white p-4">
@@ -36,14 +36,14 @@ export default async function AnalyticsPage() {
                   title={formatMoney(amountMinor, currency)}
                 />
               </div>
-              <span className="text-xs text-foreground/50">{hour}h</span>
+              <span className="text-xs text-foreground/50">{hour} ч</span>
             </div>
           ))}
         </div>
       </div>
 
       <p className="text-sm text-foreground/50">
-        Разбивки by day / by weekday / by month / by restaurant появятся в этом же разделе по мере
+        Разбивки по дням / дням недели / месяцам / ресторанам появятся в этом же разделе по мере
         подключения реальных данных (Phase 6).
       </p>
     </div>

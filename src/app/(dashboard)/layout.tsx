@@ -24,11 +24,11 @@ export default async function DashboardLayout({ children }: { children: React.Re
           <div className="flex items-center gap-3">
             {demo && (
               <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-medium text-amber-800">
-                Demo mode
+                Демо-режим
               </span>
             )}
             <span className="hidden text-sm text-foreground/60 sm:inline">
-              {user.email} · {user.role}
+              {user.email} · {user.role === "OWNER" ? "Владелец" : "Менеджер"}
             </span>
             {!demo && <SignOutButton />}
           </div>

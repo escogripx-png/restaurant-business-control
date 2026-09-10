@@ -5,9 +5,9 @@ import { formatMoney } from "@/lib/money";
 import { DemoDataBanner } from "@/components/dashboard/DemoDataBanner";
 
 const TYPE_LABEL: Record<string, string> = {
-  DISCOUNT: "Discount",
-  VOID: "Void",
-  REFUND: "Refund",
+  DISCOUNT: "Скидка",
+  VOID: "Сторно",
+  REFUND: "Возврат",
 };
 
 export default async function OperationsPage() {
@@ -20,7 +20,7 @@ export default async function OperationsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Operations</h1>
+      <h1 className="text-lg font-semibold text-foreground">Операции</h1>
       <DemoDataBanner />
 
       <div className="rounded-2xl border border-black/5 bg-white">
@@ -28,12 +28,12 @@ export default async function OperationsPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-xs uppercase tracking-wide text-foreground/40">
-                <th className="px-4 py-2 font-medium">Type</th>
-                {isAll && <th className="px-4 py-2 font-medium">Restaurant</th>}
-                <th className="px-4 py-2 font-medium">Employee</th>
-                <th className="px-4 py-2 font-medium">Reason</th>
-                <th className="px-4 py-2 font-medium">Amount</th>
-                <th className="px-4 py-2 font-medium">Date/time</th>
+                <th className="px-4 py-2 font-medium">Тип</th>
+                {isAll && <th className="px-4 py-2 font-medium">Ресторан</th>}
+                <th className="px-4 py-2 font-medium">Сотрудник</th>
+                <th className="px-4 py-2 font-medium">Причина</th>
+                <th className="px-4 py-2 font-medium">Сумма</th>
+                <th className="px-4 py-2 font-medium">Дата/время</th>
               </tr>
             </thead>
             <tbody>

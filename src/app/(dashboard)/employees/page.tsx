@@ -14,7 +14,7 @@ export default async function EmployeesPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-lg font-semibold text-foreground">Employees</h1>
+      <h1 className="text-lg font-semibold text-foreground">Сотрудники</h1>
       <DemoDataBanner />
 
       <div className="rounded-2xl border border-black/5 bg-white">
@@ -22,14 +22,14 @@ export default async function EmployeesPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-xs uppercase tracking-wide text-foreground/40">
-                <th className="px-4 py-2 font-medium">Employee</th>
-                <th className="px-4 py-2 font-medium">Role</th>
-                {isAll && <th className="px-4 py-2 font-medium">Restaurant</th>}
-                <th className="px-4 py-2 font-medium">Revenue</th>
-                <th className="px-4 py-2 font-medium">Orders</th>
-                <th className="px-4 py-2 font-medium">Avg check</th>
-                <th className="px-4 py-2 font-medium">Discount %</th>
-                <th className="px-4 py-2 font-medium">Voids</th>
+                <th className="px-4 py-2 font-medium">Сотрудник</th>
+                <th className="px-4 py-2 font-medium">Роль</th>
+                {isAll && <th className="px-4 py-2 font-medium">Ресторан</th>}
+                <th className="px-4 py-2 font-medium">Выручка</th>
+                <th className="px-4 py-2 font-medium">Заказов</th>
+                <th className="px-4 py-2 font-medium">Средний чек</th>
+                <th className="px-4 py-2 font-medium">Скидка %</th>
+                <th className="px-4 py-2 font-medium">Сторно</th>
               </tr>
             </thead>
             <tbody>
